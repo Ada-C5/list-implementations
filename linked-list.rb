@@ -5,9 +5,9 @@
 class Node
    attr_accessor :value, :next_node
 
-   def initialize(val,next_in_line=null)
+   def initialize(val,next_in_line=nil)
        @value = val
-       @next_nodex = next_in_line
+       @next_node = next_in_line
        puts "Initialized a Node with value:  " + value.to_s
    end
 end
@@ -55,20 +55,44 @@ class LinkedList
        current = @head
        full_list = []
        while current.next_node != nil
-           full_list += [current.value.to_s]
+           full_list << current.value.to_s
            current = current.next_node
        end
        full_list += [current.value.to_s]
        puts full_list.join("->")
    end
 
+# doing while current.next_node != nil prevent code from ever looking
+# at the last node, so they wouldn't get evaluated using the pattern above
    def include?(key)
+    current = @head
+    while current != nil 
+      return true if current.value == key
+      current = current.next_node
+    end
+    return false
    end
 
    def size
+    @size = 0
+    current = @head
+    while current != nil
+      @size += 1
+      current = current.next_node
+    end
+    return @size
    end
 
    def max
+    current = @head
+    maximum = current.value
+    while current != nil
+      if current.value > maximum
+        maximum = current.value
+      end
+      current = current.next_node
+    end
+    return maximum
    end
 
 end
@@ -80,6 +104,18 @@ ll = LinkedList.new(5)
 ll.add(10)
 ll.add(20)
 
+# Crystal - I added a few more to test my max method
+ll.add(65)
+ll.add(2)
+ll.add(6)
+
+# Crystal - these were my tests for include?, size, and max methods
+puts ll.include?(10) # true (passes)
+puts ll.include?(4) # false (passes)
+puts ll.size # 6 (passes)
+puts ll.max # 65 (passes)
+
+
 # Display the Linked List
 puts "Displaying Linked List:"
 ll.display
@@ -88,13 +124,14 @@ puts "Delete 10 and then display the linked list:"
 ll.delete(10)
 ll.display
 
-=begin
-Output:
-Initialized a Node with value:  5
-Initialized a Node with value:  10
-Initialized a Node with value:  20
-Displaying Linked List:
-5->10->20
-Delete 10 and then display the linked list:
-5->20
-=end
+
+
+# Output:
+# Initialized a Node with value:  5
+# Initialized a Node with value:  10
+# Initialized a Node with value:  20
+# Displaying Linked List:
+# 5->10->20
+# Delete 10 and then display the linked list:
+# 5->20
+
