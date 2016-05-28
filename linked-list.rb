@@ -5,9 +5,9 @@
 class Node
    attr_accessor :value, :next_node
 
-   def initialize(val,next_in_line=null)
+   def initialize(val,next_in_line=nil)
        @value = val
-       @next_nodex = next_in_line
+       @next_node = next_in_line
        puts "Initialized a Node with value:  " + value.to_s
    end
 end
@@ -21,7 +21,7 @@ class LinkedList
    def add(value)
        # Traverse to the end of the list
        # And insert a new node over there with the specified value
-       current = @head
+       current = @head #keep track of head
        while current.next_node != nil
            current = current.next_node
        end
@@ -63,9 +63,34 @@ class LinkedList
    end
 
    def include?(key)
+     current = @head
+
+     while current.next_node != nil
+       return true if current.value == key
+       current = current.next_node
+     end
+
+     if current.next_node == nil
+       return true if current.value == key
+     end
+
+     return false
    end
 
    def size
+     current = @head
+     size = 0
+
+     while current.next_node != nil
+       size += 1
+       current = current.next_node
+     end
+
+     if current.next_node == nil
+       size += 1
+     end
+
+     size
    end
 
    def max
@@ -87,6 +112,7 @@ ll.display
 puts "Delete 10 and then display the linked list:"
 ll.delete(10)
 ll.display
+
 
 =begin
 Output:
