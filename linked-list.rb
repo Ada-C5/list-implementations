@@ -110,6 +110,9 @@ ll = LinkedList.new(5)
 ll.add(10)
 ll.add(20)
 ll.add(30)
+ll.add(45)
+ll.add(16)
+ll.add(21)
 
 # Display the Linked List
 puts "Displaying Linked List:"
@@ -117,6 +120,7 @@ ll.display
 
 puts "Delete 10 and then display the linked list:"
 ll.delete(10)
+ll.delete(21)
 ll.display
 puts "Does the list include 5?"
 puts ll.include?(5)
