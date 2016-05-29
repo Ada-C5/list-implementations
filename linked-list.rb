@@ -62,13 +62,35 @@ class LinkedList
        puts full_list.join("->")
    end
 
-   def include?(key)
+   def include?(value)
+     current = @head
+     while !(current.next_node == nil)
+       return true if current.value == value
+       current = current.next_node
+     end
+     return true if current.value == value
+     return false
    end
 
    def size
+     current = @head
+     size = 0
+     while !(current.next_node == nil)
+         size += 1
+         current = current.next_node
+     end
+     size += 1
    end
 
    def max
+     current = @head
+     max = current.value
+     while !(current.next_node == nil)
+       max = current.value if current.value > max
+       current = current.next_node
+     end
+     max = current.value if current.value > max
+    max
    end
 
 end
@@ -87,7 +109,11 @@ ll.display
 puts "Delete 10 and then display the linked list:"
 ll.delete(10)
 ll.display
-
+puts ll.size
+puts ll.include?(5)
+puts ll.include?(10)
+puts ll.include?(20)
+puts ll.max
 =begin
 Output:
 Initialized a Node with value:  5
