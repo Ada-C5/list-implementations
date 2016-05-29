@@ -88,6 +88,17 @@ class LinkedList
   end
 
   def max
+    current = @head
+    max = 0
+    while current != nil
+      if current.value > max
+        max = current.value
+        current = current.next_node
+      else
+        current = current.next_node
+      end
+    end
+    return max
   end
 
 end
@@ -98,6 +109,7 @@ ll = LinkedList.new(5)
 # Adding Elements to Linked List
 ll.add(10)
 ll.add(20)
+ll.add(30)
 
 # Display the Linked List
 puts "Displaying Linked List:"
@@ -114,6 +126,8 @@ puts "Does the list include 20?"
 puts ll.include?(20)
 puts "What is the size of the list?"
 puts ll.size
+puts "What is the max value?"
+puts ll.max
 
 
 =begin
