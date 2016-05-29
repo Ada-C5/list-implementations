@@ -2,25 +2,53 @@
 
 class ArrayList
   def initialize
-    @storage = []
+    @storage = [nil,nil,nil,nil,nil]
+    @size = 0
+    # capacity is 5 - but content is 0. there isn't anything occupying the available memory.
   end
 
   def add(value)
+    @storage[@size] = value
+    @size += 1
   end
 
-  def delete(value)
+  # always deletes last value in collection
+  def delete
+    @size -= 1
+    # ignore the last spot/ decrease the size by 1/ "ignore this item"
   end
 
   def display
+    @size.times do |i|
+       puts @storage[i]
+    end
   end
 
   def include?(key)
+    @size.times do |i|
+      if @storage[i] == key
+        return true
+      end
+    return false
   end
 
   def size
+    @size
   end
 
   def max
+    return nil if empty?
+    biggest = 0
+    @size.times do |i|
+      if @storage[i] > @storage[biggest]
+        biggest = i
+      end
+    end
+    @storage[biggest]
+  end
+
+  def empty?
+    @size == 0
   end
 
 end
