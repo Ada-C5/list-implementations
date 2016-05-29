@@ -6,12 +6,14 @@ class ArrayList
     @size = 0
   end
 
+  # Adds _value_ at the end of the list
   def add(value)
     @storage[@size] = value
     @size += 1
   end
 
-  def delete(value)
+  def delete
+    # delete the last value
     @size -= 1
   end
 
@@ -40,9 +42,8 @@ class ArrayList
       if @storage[i] > @storage[biggest]
         biggest = i
       end
-    endreturn @storage[biggest]
-
-
+    end
+    return @storage[biggest]
   end
 
 end
@@ -58,6 +59,6 @@ arr.add(20)
 puts "Displaying Array List:"
 arr.display
 
-puts "Delete 10 and then display the array list:"
-arr.delete(10)
+puts "Delete last element and then display the array list:"
+arr.delete
 arr.display
