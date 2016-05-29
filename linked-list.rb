@@ -5,9 +5,9 @@
 class Node
    attr_accessor :value, :next_node
 
-   def initialize(val,next_in_line=null)
+   def initialize(val,next_in_line=nil)
        @value = val
-       @next_nodex = next_in_line
+       @next_node = next_in_line
        puts "Initialized a Node with value:  " + value.to_s
    end
 end
@@ -98,3 +98,5 @@ Displaying Linked List:
 Delete 10 and then display the linked list:
 5->20
 =end
+
+# Homework: write include/size/and max
