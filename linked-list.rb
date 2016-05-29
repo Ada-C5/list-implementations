@@ -5,9 +5,9 @@
 class Node
    attr_accessor :value, :next_node
 
-   def initialize(val,next_in_line=null)
+   def initialize(val,next_in_line=nil)
        @value = val
-       @next_nodex = next_in_line
+       @next_node = next_in_line
        puts "Initialized a Node with value:  " + value.to_s
    end
 end
@@ -63,12 +63,68 @@ class LinkedList
    end
 
    def include?(key)
+    current = @head
+
+    # traversing the list and checking against key 
+    while current.next_node != nil
+      if curerent.value == key
+        return true
+      end
+      current = current.next_node
+    end
+
+    # checking final value since the loop terminates when current.next_node == nil
+    if current.value == key
+      return true
+    else
+      return false
+    end
    end
 
    def size
+    current = @head
+    
+    # started count at 1
+    count = 0
+
+    # starts counting with the first node
+    while current.next_node != nil
+      count += 1
+      current = current.next_node
+    end
+
+    # adds the final node
+    if current.next_node == nil
+      count += 1
+    end
+
+    # tells you how many you counted.
+    return count
+
    end
 
    def max
+    current = @head
+    biggest = current.value
+
+    # traverses the list comparing values
+    while current.next_node != nil
+      # done this way so it doesn't compare against the first value in the list, which is already stored in biggest.
+      current = current.next_node 
+      if biggest < current.value
+        biggest == current.value
+      end
+    end
+
+    # compares value of last node
+    if current.next_node == nil
+      if biggest < current.value
+        biggest = current.value
+      end
+    end
+
+    # returns largest value found
+    return biggest
    end
 
 end
