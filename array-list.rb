@@ -2,25 +2,47 @@
 
 class ArrayList
   def initialize
-    @storage = []
+    @storage = [nil,nil,nil,nil,nil]
+    @size = 0
   end
 
   def add(value)
+    @storage[@size] = value
+    @size += 1
   end
 
   def delete(value)
+    @size -= 1
   end
 
   def display
+    @size.times do |i|
+      puts @storage[i]
+    end
   end
 
   def include?(key)
+    @size.times do |i|
+      if @storage[i] == key
+        return true
+      end
+    end
+    return false
   end
 
   def size
+    @size
   end
 
   def max
+    biggest = 0
+    @size.times do |i|
+      if @storage[i] > @storage[biggest]
+        biggest = i
+      end
+    endreturn @storage[biggest]
+
+
   end
 
 end
