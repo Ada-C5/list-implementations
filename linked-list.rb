@@ -5,9 +5,9 @@
 class Node
    attr_accessor :value, :next_node
 
-   def initialize(val,next_in_line=null)
+   def initialize(val,next_in_line = nil)
        @value = val
-       @next_nodex = next_in_line
+       @next_node = next_in_line
        puts "Initialized a Node with value:  " + value.to_s
    end
 end
@@ -63,12 +63,36 @@ class LinkedList
    end
 
    def include?(key)
+     current = @head
+     full_list = []
+     while current.next_node != nil
+         full_list += [current.value.to_s]
+         (return true) if current.value == key
+         current = current.next_node
+     end
+     return false
    end
 
    def size
+     current = @head
+     count = 0
+     full_list = []
+     while current.next_node != nil
+         full_list += [current.value.to_s] #not necessary but nice
+         current = current.next_node
+         count += 1
+     end
+     return count
    end
 
    def max
+     current = @head
+     max = 0
+     while current.next_node != nil
+       (max += current.value) if current.value > max
+         current = current.next_node
+     end
+     return max
    end
 
 end
