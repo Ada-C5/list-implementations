@@ -5,9 +5,9 @@
 class Node
    attr_accessor :value, :next_node
 
-   def initialize(val,next_in_line=null)
+   def initialize(val,next_in_line = nil)
        @value = val
-       @next_nodex = next_in_line
+       @next_node = next_in_line
        puts "Initialized a Node with value:  " + value.to_s
    end
 end
@@ -21,7 +21,7 @@ class LinkedList
    def add(value)
        # Traverse to the end of the list
        # And insert a new node over there with the specified value
-       current = @head
+       current = @head #temp, move the pointer current but not the pointer head
        while current.next_node != nil
            current = current.next_node
        end
@@ -55,21 +55,37 @@ class LinkedList
        current = @head
        full_list = []
        while current.next_node != nil
-           full_list += [current.value.to_s]
+           full_list += [current.value.to_s]   #try to figure this out first.....slack crystal if you need hep
            current = current.next_node
        end
        full_list += [current.value.to_s]
        puts full_list.join("->")
    end
 
-   def include?(key)
-   end
+    def include?(key)  #do for homework
+      current = @head
+      while current != nil
+        return true if current.value == key
+        current = current.next_node
+      end
+      return false
+    end
 
-   def size
-   end
 
-   def max
-   end
+    def size  #do for homework
+      @size = 0
+      current = @head
+      while current != nil
+        @size += 1
+        current = current.next_node
+      end
+      return @size
+    end
+
+
+    def max  #do if feeling ambitious
+
+    end
 
 end
 
