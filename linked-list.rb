@@ -75,7 +75,7 @@ class LinkedList
 
    def size
      current = @head
-     count = 0
+     count = 1
      full_list = []
      while current.next_node != nil
          full_list += [current.value.to_s] #not necessary but nice
