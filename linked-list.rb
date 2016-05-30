@@ -5,9 +5,9 @@
 class Node
    attr_accessor :value, :next_node
 
-   def initialize(val,next_in_line=null)
+   def initialize(val,next_in_line=nil)
        @value = val
-       @next_nodex = next_in_line
+       @next_node = next_in_line
        puts "Initialized a Node with value:  " + value.to_s
    end
 end
@@ -63,9 +63,26 @@ class LinkedList
    end
 
    def include?(key)
+      current = @head
+      full_list = []
+      return p "#{key} is included!" if current.value == key
+      while current.next_node != nil
+          current = current.next_node
+          return p "#{key} is included!" if current.value == key
+      end
+      return p "#{key} is not included."
+
    end
 
    def size
+      current = @head
+      full_list = []
+      while current.next_node != nil
+          full_list += [current.value.to_s]
+          current = current.next_node
+      end
+      full_list += [current.value.to_s]
+      return p "Size is #{full_list.length}."
    end
 
    def max
@@ -88,6 +105,17 @@ puts "Delete 10 and then display the linked list:"
 ll.delete(10)
 ll.display
 
+puts "Does Linked List include 20?"
+ll.include?(20)
+
+puts "Does Linked List include 5?"
+ll.include?(5)
+
+puts "Does Linked List include 10?"
+ll.include?(10)
+
+puts "What is the size of the Linked List?"
+ll.size
 =begin
 Output:
 Initialized a Node with value:  5
