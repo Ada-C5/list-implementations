@@ -2,27 +2,53 @@
 
 class ArrayList
   def initialize
-    @storage = []
+    @storage = [0,0,0,0,0]
+    @size = 0
   end
 
   def add(value)
+    @storage[@size] = value
+    @size += 1
   end
 
-  def delete(value)
+  #'deletes' the last value
+  def delete
+    @size -= 1
   end
 
   def display
+    @size.times do |i|
+      puts @storage[i]
+    end
   end
 
   def include?(key)
+    @size.times do |i|
+      if @storage[i] == key
+        return true
+      end
+    end
+    return false
   end
 
   def size
+    return @size
   end
 
   def max
+    return nil if empty?
+    biggest = 0
+    @size.times do |i|
+      if @storage[i] > @storage[biggest]
+        biggest = i
+      end
+    end
+    returns @storage[biggest]
   end
 
+  def empty?
+    @size == 0
+  end
 end
 
 # Initializing an Array List
@@ -36,6 +62,6 @@ arr.add(20)
 puts "Displaying Array List:"
 arr.display
 
-puts "Delete 10 and then display the array list:"
-arr.delete(10)
+puts "Delete last element and then display the array list:"
+arr.delete
 arr.display
