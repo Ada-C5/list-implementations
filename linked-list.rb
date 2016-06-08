@@ -5,9 +5,9 @@
 class Node
    attr_accessor :value, :next_node
 
-   def initialize(val,next_in_line=null)
+   def initialize(val,next_in_line=nil)
        @value = val
-       @next_nodex = next_in_line
+       @next_node = next_in_line
        puts "Initialized a Node with value:  " + value.to_s
    end
 end
@@ -40,6 +40,7 @@ class LinkedList
            #   ... x->z
            # ( and z is basically y.next_node )
            current = @head
+           ## wait what's happening in this next while loop? when would current be nil?
            while (current != nil) && (current.next_node != nil) && ((current.next_node).value != val)
                current = current.next_node
            end
@@ -63,9 +64,43 @@ class LinkedList
    end
 
    def include?(key)
+
+     # Traverse through the list till you hit the "nil" at the end
+     current = @head
+     full_list = []
+     while current.next_node != nil
+         if current.value == key
+           return true
+         else
+           full_list += [current.value.to_s]
+           current = current.next_node
+         end
+     end
+
+     if current.value == key
+       return true
+     else
+       full_list += [current.value.to_s]
+     end
+
+     return false
+
    end
 
    def size
+
+     current = @head
+     full_list = []
+     size_of_list = 0
+     while current.next_node != nil
+         full_list += [current.value.to_s]
+         size_of_list += 1
+         current = current.next_node
+     end
+     full_list += [current.value.to_s]
+     size_of_list += 1
+     return size_of_list
+
    end
 
    def max
@@ -84,9 +119,29 @@ ll.add(20)
 puts "Displaying Linked List:"
 ll.display
 
+puts "Does Linked List include the given value?"
+puts "5:"
+puts ll.include?(5)
+puts "10:"
+puts ll.include?(10)
+puts "20:"
+puts ll.include?(20)
+puts "16:"
+puts ll.include?(16)
+
+puts "Size of array:"
+puts ll.size
+
 puts "Delete 10 and then display the linked list:"
 ll.delete(10)
 ll.display
+
+puts "Does it still include the given value?"
+puts "10:"
+puts ll.include?(10)
+
+puts "What is the size now?"
+puts ll.size
 
 =begin
 Output:
